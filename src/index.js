@@ -4,7 +4,7 @@ import "antd/dist/antd.css";
 import "./index.css";
 import Login from "./Components/Auth/Login";
 import Register from "./Components/Auth/Register";
-import Dashboard from "./Components/Dashboard/Dashboard";
+import Dashboard from "./Components/Dashboard";
 
 render(
   <BrowserRouter>

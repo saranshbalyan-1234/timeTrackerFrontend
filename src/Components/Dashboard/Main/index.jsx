@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Donut from "./Donut";
 import InfoTable from "./Table";
-export default function HomePage() {
+export default function Main() {
   const [tableData, setTableData] = useState([]);
   const data = [
     {

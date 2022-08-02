@@ -8,7 +8,7 @@ import {
 import { StyledLayout } from "./style";
 import { Layout, Menu } from "antd";
 import React, { useState } from "react";
-import HomePage from ".";
+import Main from "./Main";
 
 const { Header, Sider, Content, Footer } = Layout;
 export default function Dashboard() {
@@ -81,7 +81,7 @@ export default function Dashboard() {
               className="site-layout-background"
               style={{ padding: 24, minHeight: 360 }}
             >
-              <HomePage />
+              <Main />
             </div>
           </Content>
 
