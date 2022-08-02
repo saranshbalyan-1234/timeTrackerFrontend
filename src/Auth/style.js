@@ -16,7 +16,7 @@ export const StyledWrapper = styled.div`
     content: "";
     left: 0;
     top: -10px;
-    background-image: url(/public/background.png);
+    background-image: url(/background.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
