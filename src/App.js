@@ -1,6 +1,6 @@
 import "./index.css";
 import "antd/dist/antd.css";
-import HomePage from "./HomePage";
+import HomePage from "./Components/Dashboard";
 
 function App() {
   return (
