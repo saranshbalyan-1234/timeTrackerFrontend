@@ -5,31 +5,29 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { StyledWrapper } from "./style";
 import { api_base_url } from "../constants";
+import { getError } from "../Utils/error";
 const Login = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [details, setDetails] = useState({
-    name: "",
     email: "",
     password: "",
   });
   const onLogin = () => {
     setLoading(true);
     axios
-      .post(api_base_url + "/login", details)
+      .post(api_base_url + "/auth/login", details)
       .then((res) => {
-        if (res.data.status == "failure") {
-          message.error("Invalid Email or Password");
-        } else {
-          message.success("Logged In Successfully");
-          localStorage.setItem("token", res.data.token);
-          localStorage.setItem("user", res.data.id);
-          navigate("/");
-        }
+        const { id, name, email, accessToken, refreshToken } = res.data;
+        message.success("Logged In Successfully");
+        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("refreshToken", refreshToken);
+        localStorage.setItem("user", { id, name, email });
+        navigate("/");
         setLoading(false);
       })
       .catch((err) => {
-        message.error("Invalid Email or Password");
+        getError(err);
         setLoading(false);
       });
   };

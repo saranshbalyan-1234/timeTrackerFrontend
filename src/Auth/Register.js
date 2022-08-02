@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { StyledWrapper } from "./style";
 import { api_base_url } from "../constants";
+import { getError } from "../Utils/error";
 const Register = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -23,27 +24,21 @@ const Register = () => {
   const onRegister = () => {
     setLoading(true);
     axios
-      .post(api_base_url + "/register", details)
+      .post(api_base_url + "/auth/register", details)
       .then((res) => {
-        message.success("Registered Successfully");
+        message.success(
+          "Registered successfuly, Please check email to verify account."
+        );
         navigate("/login");
         setLoading(false);
       })
       .catch((err) => {
-        message.error("Something Went Wrong");
+        console.log(err);
+        getError(err);
         setLoading(false);
       });
   };
-  const formItemLayout = {
-    labelCol: {
-      xs: { span: 40 },
-      sm: { span: 10 },
-    },
-    wrapperCol: {
-      xs: { span: 28 },
-      sm: { span: 18 },
-    },
-  };
+
   const tailFormItemLayout = {
     wrapperCol: {
       xs: {
