@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Donut from "./Donut";
 import InfoTable from "./Table";
+import { Row, Col } from "antd";
 export default function Main() {
   const [tableData, setTableData] = useState([]);
   const data = [
@@ -64,16 +65,24 @@ export default function Main() {
   }, []);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-around",
-        flexWrap: "wrap",
-        // marginTop: "100px",
-      }}
-    >
-      <Donut data={data} setTableData={setTableData} />
-      <InfoTable data={tableData} />
-    </div>
+    <Row justify="space-between" wrap={true}>
+      <Col
+        style={{
+          minWidth: window.innerWidth < 720 ? 340 : "50%",
+          width: "50%",
+        }}
+      >
+        <Donut data={data} setTableData={setTableData} />
+      </Col>
+
+      <Col
+        style={{
+          minWidth: window.innerWidth < 720 ? 340 : "50%",
+          width: "50%",
+        }}
+      >
+        <InfoTable data={tableData} />
+      </Col>
+    </Row>
   );
 }

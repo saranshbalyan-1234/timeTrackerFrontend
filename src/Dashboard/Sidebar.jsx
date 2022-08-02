@@ -13,7 +13,7 @@ export default function Sidebar({ collapsed, setCollapsed }) {
       collapsible
       collapsed={collapsed}
       breakpoint="lg"
-      // collapsedWidth="0"
+      collapsedWidth={window.innerWidth < 720 ? 0 : 80}
       onBreakpoint={(broken) => {
         console.log(broken);
       }}

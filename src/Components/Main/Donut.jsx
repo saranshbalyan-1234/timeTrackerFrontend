@@ -39,12 +39,14 @@ export default function Donut({ data, setTableData }) {
     // ...chartOptions
   };
   return (
-    <Chart
-      options={options}
-      // height={400}
-      width={500}
-      series={series}
-      type="donut"
-    />
+    <div style={{ minWidth: "100%" }}>
+      <Chart
+        options={options}
+        // height={400}
+        // minWidth={500}
+        series={series}
+        type="donut"
+      />
+    </div>
   );
 }
