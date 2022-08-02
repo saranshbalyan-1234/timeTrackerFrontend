@@ -69,7 +69,7 @@ export default function Main() {
         display: "flex",
         justifyContent: "space-around",
         flexWrap: "wrap",
-        marginTop: "100px",
+        // marginTop: "100px",
       }}
     >
       <Donut data={data} setTableData={setTableData} />

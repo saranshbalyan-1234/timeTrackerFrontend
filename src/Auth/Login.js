@@ -4,7 +4,7 @@ import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { StyledWrapper } from "./style";
-import { api_base_url } from "../../constants";
+import { api_base_url } from "../constants";
 const Login = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
