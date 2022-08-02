@@ -1,8 +1,18 @@
 import { StyledLayout } from "./style";
-import { HomeOutlined, UserOutlined } from "@ant-design/icons";
-import { Layout, Breadcrumb } from "antd";
+import { HomeOutlined, ArrowDownOutlined } from "@ant-design/icons";
+import {
+  Layout,
+  Breadcrumb,
+  PageHeader,
+  Button,
+  Tag,
+  Card,
+  Statistic,
+  Row,
+  Col,
+} from "antd";
 import React, { useState } from "react";
-import { HashRouter, Link, Route, Routes, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import Sidebar from "./Sidebar";
@@ -47,9 +57,60 @@ export default function Dashboard({ children }) {
             <div
               className="site-layout-background"
               style={{
+                marginTop: "15px",
+              }}
+            >
+              {" "}
+              <PageHeader
+                onBack={() => window.history.back()}
+                title="Dashboard"
+                className="site-page-header"
+                subTitle="All Major Statistics"
+                tags={<Tag color="blue">Active</Tag>}
+                extra={[
+                  <Button key="3">Select Date</Button>,
+                  <Button key="2">This Month</Button>,
+                  <Button key="2">Yesterday</Button>,
+                  <Button key="1" type="primary">
+                    Today
+                  </Button>,
+                  // <DropdownMenu key="more" />,
+                ]}
+                avatar={{
+                  src: "https://avatars1.githubusercontent.com/u/8186664?s=460&v=4",
+                }}
+              ></PageHeader>
+            </div>
+            <Row gutter={[16, 16]} style={{ marginTop: "15px" }}>
+              <Col>
+                <Card>
+                  <Statistic title="Today" value={"1 Hour 2 Minutes"} />
+                </Card>
+              </Col>
+
+              <Col>
+                <Card>
+                  <Statistic title="Idle" value={"29 Minutes"} />
+                </Card>
+              </Col>
+              <Col>
+                <Card>
+                  <Statistic title="Keystrokes" value={10000} />
+                </Card>
+              </Col>
+              <Col>
+                <Card>
+                  <Statistic title="Performance" value={"55%"} />
+                </Card>
+              </Col>
+            </Row>
+
+            <div
+              className="site-layout-background"
+              style={{
                 padding: 24,
                 minHeight: 360,
-                minHeight: "calc(100vh - 135px)",
+                minHeight: "calc(100vh - 120px)",
                 marginTop: "15px",
               }}
             >
