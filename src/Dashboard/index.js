@@ -10,12 +10,14 @@ import {
   Statistic,
   Row,
   Col,
+  DatePicker,
 } from "antd";
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import Sidebar from "./Sidebar";
+const { RangePicker } = DatePicker;
 const { Content } = Layout;
 export default function Dashboard({ children }) {
   const [collapsed, setCollapsed] = useState(false);
@@ -67,15 +69,22 @@ export default function Dashboard({ children }) {
                 className="site-page-header"
                 subTitle="All Major Statistics"
                 tags={<Tag color="blue">Active</Tag>}
-                extra={[
-                  <Button key="3">Select Date</Button>,
-                  <Button key="2">This Month</Button>,
-                  <Button key="2">Yesterday</Button>,
-                  <Button key="1" type="primary">
-                    Today
-                  </Button>,
-                  // <DropdownMenu key="more" />,
-                ]}
+                extra={
+                  <div
+                    style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}
+                  >
+                    <RangePicker key="3" />
+                    <Button
+                      // style={{ marginLeft: "10px", marginRight: "10px" }}
+                      key="2"
+                    >
+                      Yesterday
+                    </Button>
+                    <Button key="1" type="primary">
+                      Today
+                    </Button>
+                  </div>
+                }
                 avatar={{
                   src: "https://avatars1.githubusercontent.com/u/8186664?s=460&v=4",
                 }}
