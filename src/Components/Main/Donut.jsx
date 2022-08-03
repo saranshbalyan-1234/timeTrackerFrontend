@@ -33,13 +33,24 @@ export default function Donut({ data, setTableData }) {
 
     legend: {
       show: true,
+      position: "top",
+      // horizontalAlign: "center",
     },
-
+    responsive: [
+      {
+        breakpoint: 1000,
+        options: {
+          legend: {
+            position: "bottom",
+          },
+        },
+      },
+    ],
     labels: labels,
     // ...chartOptions
   };
   return (
-    <div style={{ minWidth: "100%" }}>
+    <div style={{ width: "100%", maxWidth: "600px" }}>
       <Chart
         options={options}
         // height={400}

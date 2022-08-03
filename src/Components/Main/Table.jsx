@@ -15,18 +15,26 @@ export default function InfoTable({ data }) {
   };
   const columns = [
     {
+      key: "name",
       title: "Name",
       dataIndex: "name",
       width: 260,
+      // responsive: ["sm"],
 
       // sortable: true,
     },
     {
+      key: "time",
       title: "Time",
       dataIndex: "time",
       render: secondsToHms,
       width: 240,
+      // responsive: ["sm"],
     },
   ];
-  return <Table columns={columns} dataSource={data} width={500} />;
+  return (
+    <div style={{ maxWidth: "600px" }}>
+      <Table columns={columns} dataSource={data} />
+    </div>
+  );
 }

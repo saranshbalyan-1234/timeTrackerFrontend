@@ -65,7 +65,7 @@ export default function Main() {
   }, []);
 
   return (
-    <Row justify="space-between" wrap={true}>
+    <Row justify="space-between" wrap={true} gutter={[32, 32]}>
       <Col
         style={{
           minWidth: window.innerWidth < 720 ? 340 : "50%",
