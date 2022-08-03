@@ -22,7 +22,7 @@ const Login = () => {
         message.success("Logged In Successfully");
         localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("refreshToken", refreshToken);
-        localStorage.setItem("user", { id, name, email });
+        localStorage.setItem("user", JSON.stringify({ id, name, email }));
         navigate("/");
         setLoading(false);
       })
