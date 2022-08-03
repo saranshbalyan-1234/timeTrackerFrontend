@@ -12,7 +12,7 @@ export default function Main() {
     let date = `${newDate.getFullYear()}-${
       newDate.getMonth() + 1
     }-${newDate.getDate()}`;
-    axios.post("/tracking/get", { date }).then((res) => {
+    axios.post("/tracking/get", { date: "2022-8-2" }).then((res) => {
       setDonutData(res.data);
       setTableData(
         res.data.reduce((prev, current) =>
