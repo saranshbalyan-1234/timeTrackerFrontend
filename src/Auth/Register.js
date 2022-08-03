@@ -59,7 +59,7 @@ const Register = () => {
             <center>
               {" "}
               <img
-                src="/logo2.svg"
+                src="/Logo/logo2.svg"
                 style={{
                   height: "50px",
                   marginBottom: "10px",
