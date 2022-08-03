@@ -3,7 +3,7 @@ import Donut from "./Donut";
 import axios from "axios";
 import InfoTable from "./Table";
 import { Row, Col } from "antd";
-export default function Main() {
+export default function Home() {
   const [tableData, setTableData] = useState([]);
   const [donutData, setDonutData] = useState([]);
 
