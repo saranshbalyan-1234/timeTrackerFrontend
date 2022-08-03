@@ -3,7 +3,7 @@ import { Form, Input, Checkbox, Button, Card, Spin, message } from "antd";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { StyledWrapper } from "./style";
-import { api_base_url } from "../constants";
+import { api_base_url } from "../Utils/constants";
 import { getError } from "../Utils/error";
 const Register = () => {
   const [loading, setLoading] = useState(false);

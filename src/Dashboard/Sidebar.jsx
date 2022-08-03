@@ -23,7 +23,7 @@ export default function Sidebar({ collapsed, setCollapsed }) {
     >
       {collapsed ? (
         <img
-          src="/iconlogo.svg"
+          src="/Logo/iconlogo.svg"
           className="logo"
           style={{
             height: "20px",
@@ -33,7 +33,7 @@ export default function Sidebar({ collapsed, setCollapsed }) {
         />
       ) : (
         <img
-          src="/logo.svg"
+          src="/Logo/logo.svg"
           className="logo"
           style={{ height: "35px", width: "150px" }}
         />
