@@ -7,12 +7,13 @@ export default function Main() {
   const [tableData, setTableData] = useState([]);
   const [donutData, setDonutData] = useState([]);
 
-  useEffect(() => {
+  const getData = async () => {
     let newDate = new Date();
     let date = `${newDate.getFullYear()}-${
       newDate.getMonth() + 1
     }-${newDate.getDate()}`;
-    axios.post("/tracking/get", { date: "2022-8-2" }).then((res) => {
+    await axios.post("/tracking/get", { date: "2022-8-2" }).then((res) => {
+      console.log(res.data);
       setDonutData(res.data);
       setTableData(
         res.data.reduce((prev, current) =>
@@ -20,11 +21,9 @@ export default function Main() {
         ).data
       );
     });
-    // setTableData(
-    //   data.reduce((prev, current) =>
-    //     prev.total > current.total ? prev : current
-    //   ).data
-    // );
+  };
+  useEffect(() => {
+    getData();
   }, []);
 
   return (
@@ -35,7 +34,11 @@ export default function Main() {
           width: "50%",
         }}
       >
-        <Donut data={donutData} setTableData={setTableData} />
+        {donutData.length ? (
+          <Donut data={donutData} setTableData={setTableData} />
+        ) : (
+          <></>
+        )}
       </Col>
 
       <Col
