@@ -1,10 +1,12 @@
-import { SIGNIN_REQUEST } from "../Actions/action-types";
+import {
+  SIGNIN_REQUEST,
+  SIGNIN_SUCCESS,
+  SIGNIN_FAILURE,
+} from "../Actions/action-types";
 
 const initState = {
-  error: null,
-  authenticating: false,
-  authenticated: false,
-  tokenAuthenticating: true,
+  loading: false,
+  user: null,
 };
 
 const authReducer = (state = initState, { type, payload }) => {
@@ -13,9 +15,19 @@ const authReducer = (state = initState, { type, payload }) => {
       return {
         ...state,
         loading: true,
-        authenticating: true,
-        signinError: false,
-        registerError: false,
+        user: null,
+      };
+    case SIGNIN_SUCCESS:
+      return {
+        ...state,
+        user: payload.data,
+        loading: false,
+      };
+    case SIGNIN_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        user: null,
       };
 
     default:

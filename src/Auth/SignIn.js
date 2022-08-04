@@ -2,43 +2,25 @@ import React, { useState } from "react";
 import { Form, Input, Button, Checkbox, Card, Spin, message } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { StyledWrapper } from "./style";
+import { connect } from "react-redux";
+import { signIn } from "../Redux/Actions/auth";
 
-import { getError } from "../Utils/error";
-const Login = () => {
-  const [loading, setLoading] = useState(false);
+const SignIn = ({ loading, signIn }) => {
   const navigate = useNavigate();
   const [details, setDetails] = useState({
     email: "",
     password: "",
   });
-  const onLogin = () => {
-    setLoading(true);
-    axios
-      .post("/auth/login", details)
-      .then((res) => {
-        const { id, name, email, accessToken, refreshToken } = res.data;
-        message.success("Logged In Successfully");
-        localStorage.setItem("accessToken", accessToken);
-        localStorage.setItem("refreshToken", refreshToken);
-        localStorage.setItem("user", JSON.stringify({ id, name, email }));
-        navigate("/");
-        setLoading(false);
-      })
-      .catch((err) => {
-        getError(err);
-        setLoading(false);
-      });
-  };
+
   const handleDetails = (e) => {
     let name = e.target.name;
     let value = e.target.value;
     let object = {};
     object[name] = value;
-
     setDetails({ ...details, ...object });
   };
+
   return (
     <StyledWrapper>
       <div className="outsideApp">
@@ -52,7 +34,9 @@ const Login = () => {
               name="normal_login"
               className="login-form"
               initialValues={{ remember: true }}
-              onFinish={onLogin}
+              onFinish={() => {
+                signIn(details);
+              }}
             >
               <Form.Item
                 name="email"
@@ -114,4 +98,8 @@ const Login = () => {
     </StyledWrapper>
   );
 };
-export default Login;
+const mapStateToProps = (state) => ({ loading: state.auth.loading });
+
+const mapDispatchToProps = { signIn };
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
