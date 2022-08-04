@@ -1,9 +1,7 @@
 import { render } from "react-dom";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import "antd/dist/antd.css";
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "antd/dist/antd.min.css";
 import "./index.css";
-// import Login from "./Auth/Login";
 import Register from "./Auth/Register";
 import Routess from "./Components/Routess";
 import axios from "axios";
@@ -12,6 +10,7 @@ import { Provider } from "react-redux";
 import { store, persister } from "./Redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 import SignIn from "./Auth/SignIn";
+import PasswordReset from "./Auth/PasswordReset";
 axios.defaults.baseURL = api_base_url;
 
 render(
@@ -21,6 +20,7 @@ render(
         <Routes>
           <Route exact path="signin" element={<SignIn />} />
           <Route exact path="register" element={<Register />} />
+          <Route exact path="password-reset" element={<PasswordReset />} />
           <Route path="/*" element={<Routess />} />
         </Routes>
       </PersistGate>

@@ -26,7 +26,7 @@ function Routess({ user }) {
     },
     (err) => {
       let status = err.response.status;
-      if (status == 401) {
+      if (status === 401) {
         logout();
         return navigate("/signin");
       }

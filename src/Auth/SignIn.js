@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { Form, Input, Button, Checkbox, Card, Spin, message } from "antd";
+import { Form, Input, Button, Checkbox, Card, Spin } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { StyledWrapper } from "./style";
 import { connect } from "react-redux";
 import { signIn } from "../Redux/Actions/auth";
 
 const SignIn = ({ loading, signIn }) => {
-  const navigate = useNavigate();
   const [details, setDetails] = useState({
     email: "",
     password: "",
@@ -27,6 +26,7 @@ const SignIn = ({ loading, signIn }) => {
         <Spin spinning={loading}>
           <Card title="Login" bordered class="shadow">
             <img
+              alt="logo"
               src="/Logo/logo2.svg"
               style={{ height: "50px", marginBottom: "10px" }}
             />
@@ -75,9 +75,9 @@ const SignIn = ({ loading, signIn }) => {
                   <Checkbox>Remember me</Checkbox>
                 </Form.Item>
 
-                <a className="login-form-forgot" href="">
-                  Forgot password
-                </a>
+                <Link className="login-form-forgot" to="/password-reset">
+                  Forgot password!
+                </Link>
               </Form.Item>
 
               <Form.Item>

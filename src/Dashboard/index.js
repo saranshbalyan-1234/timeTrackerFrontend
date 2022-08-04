@@ -1,5 +1,5 @@
 import { StyledLayout } from "./style";
-import { HomeOutlined, ArrowDownOutlined } from "@ant-design/icons";
+import { HomeOutlined } from "@ant-design/icons";
 import {
   Layout,
   Breadcrumb,
@@ -118,7 +118,7 @@ export default function Dashboard({ children }) {
               className="site-layout-background"
               style={{
                 padding: 24,
-                minHeight: 360,
+
                 minHeight: "calc(100vh - 120px)",
                 marginTop: "15px",
               }}

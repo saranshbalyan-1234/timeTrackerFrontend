@@ -26,12 +26,26 @@ export const signIn = (payload) => {
 export const register = (payload) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post(`/auth/register`, payload);
+      await axios.post(`/auth/register`, payload);
       message.success(
         "Registered successfuly, Please check email to verify account."
       );
       return true;
     } catch (err) {
+      getError(err);
+      return false;
+    }
+  };
+};
+
+export const resetPassword = (payload) => {
+  return async (dispatch) => {
+    try {
+      await axios.post(`/auth/reset-password/send-mail`, payload);
+      message.info("Please check email to reset your password.");
+      return true;
+    } catch (err) {
+      console.log("error", err);
       getError(err);
       return false;
     }

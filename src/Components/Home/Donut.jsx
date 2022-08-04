@@ -21,7 +21,7 @@ export default function Donut({ data, setTableData }) {
         dataPointSelection: (event, chartContext, config) => {
           setTableData(
             data.find((el) => {
-              return el.title == config.w.config.labels[config.dataPointIndex];
+              return el.title === config.w.config.labels[config.dataPointIndex];
             }).data
           );
         },

@@ -47,6 +47,7 @@ const Register = ({ register }) => {
             <center>
               {" "}
               <img
+                alt="logo"
                 src="/Logo/logo2.svg"
                 style={{
                   height: "50px",
@@ -155,7 +156,7 @@ const Register = ({ register }) => {
                 {...tailFormItemLayout}
               >
                 <Checkbox>
-                  I have read the <a href="">agreement</a>
+                  I have read the <Link to="/user-agreement">agreement</Link>
                 </Checkbox>
               </Form.Item>
               <Form.Item {...tailFormItemLayout}>

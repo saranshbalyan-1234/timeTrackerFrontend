@@ -8,10 +8,10 @@ export default function Home() {
   const [donutData, setDonutData] = useState([]);
 
   const getData = async () => {
-    let newDate = new Date();
-    let date = `${newDate.getFullYear()}-${
-      newDate.getMonth() + 1
-    }-${newDate.getDate()}`;
+    // let newDate = new Date();
+    // let date = `${newDate.getFullYear()}-${
+    //   newDate.getMonth() + 1
+    // }-${newDate.getDate()}`;
     await axios.post("/tracking/get", { date: "2022-8-2" }).then((res) => {
       console.log(res.data);
       setDonutData(res.data);
