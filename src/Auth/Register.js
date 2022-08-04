@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { Form, Input, Checkbox, Button, Card, Spin, message } from "antd";
-import axios from "axios";
+import { Form, Input, Checkbox, Button, Card, Spin } from "antd";
 import { Link, useNavigate } from "react-router-dom";
+import { register } from "../Redux/Actions/auth";
+import { connect } from "react-redux";
 import { StyledWrapper } from "./style";
-import { getError } from "../Utils/error";
-const Register = () => {
-  const [loading, setLoading] = useState(false);
+
+const Register = ({ register }) => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [details, setDetails] = useState({
     name: "",
     email: "",
@@ -20,22 +21,10 @@ const Register = () => {
 
     setDetails({ ...details, ...object });
   };
-  const onRegister = () => {
+  const onRegister = async () => {
     setLoading(true);
-    axios
-      .post("/auth/register", details)
-      .then((res) => {
-        message.success(
-          "Registered successfuly, Please check email to verify account."
-        );
-        navigate("/login");
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        getError(err);
-        setLoading(false);
-      });
+    (await register(details)) && navigate("/signin");
+    setLoading(false);
   };
 
   const tailFormItemLayout = {
@@ -187,4 +176,7 @@ const Register = () => {
     </StyledWrapper>
   );
 };
-export default Register;
+
+const mapDispatchToProps = { register };
+
+export default connect(null, mapDispatchToProps)(Register);

@@ -11,6 +11,7 @@ import { message } from "antd";
 import Home from "./Home";
 import axios from "axios";
 import { connect } from "react-redux";
+import { logout } from "../Redux/Actions/auth";
 function Routess({ user }) {
   const navigate = useNavigate();
 
@@ -26,6 +27,7 @@ function Routess({ user }) {
     (err) => {
       let status = err.response.status;
       if (status == 401) {
+        logout();
         return navigate("/signin");
       }
 
@@ -33,7 +35,8 @@ function Routess({ user }) {
       errors.forEach((error) => {
         message.error(error);
       });
-      console.log("errorResponse", err.response.data);
+
+      console.log("errorResponse", errors);
       return err.response;
     }
   );
@@ -58,6 +61,6 @@ function Routess({ user }) {
 }
 const mapStateToProps = (state) => ({ user: state.auth.user });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { logout };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Routess);

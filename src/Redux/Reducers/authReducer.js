@@ -2,6 +2,7 @@ import {
   SIGNIN_REQUEST,
   SIGNIN_SUCCESS,
   SIGNIN_FAILURE,
+  LOGOUT,
 } from "../Actions/action-types";
 
 const initState = {
@@ -24,6 +25,12 @@ const authReducer = (state = initState, { type, payload }) => {
         loading: false,
       };
     case SIGNIN_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        user: null,
+      };
+    case LOGOUT:
       return {
         ...state,
         loading: false,
