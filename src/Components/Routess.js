@@ -1,34 +1,45 @@
 import React from "react";
 import Dashboard from "../Dashboard";
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import { message } from "antd";
 import Home from "./Home";
 import axios from "axios";
-export default function Routess() {
-  axios.interceptors.request.use((request) => {
-    request.headers.Authorization = `Bearer ${localStorage.getItem(
-      "accessToken"
-    )}`;
+import { connect } from "react-redux";
+function Routess({ user }) {
+  const navigate = useNavigate();
 
+  axios.interceptors.request.use((request) => {
+    request.headers.Authorization = `Bearer ${user?.accessToken}`;
     return request;
   });
+
   axios.interceptors.response.use(
     (response) => {
       return response;
     },
     (err) => {
-      console.log("errorResponse", err.response);
-      if (err.response.data.message == "Unauthenticated.") {
-        localStorage.clear();
-        // navigate("/login");
-        message.error("Please Login Again, Token Expired");
-        return err.response;
+      let status = err.response.status;
+      if (status == 401) {
+        return navigate("/signin");
       }
+
+      let errors = err.response.data.errors;
+      errors.forEach((error) => {
+        message.error(error);
+      });
+      console.log("errorResponse", err.response.data);
+      return err.response;
     }
   );
-  const user = JSON.parse(localStorage.getItem("user")).id;
+
   const location = useLocation();
-  return true ? (
+  return user ? (
     <Dashboard>
       <Routes>
         <Route exact path="/" element={<Home />}></Route>
@@ -37,7 +48,7 @@ export default function Routess() {
   ) : (
     <Navigate
       to={{
-        pathname: "/login",
+        pathname: "/signin",
         state: {
           from: location.pathname,
         },
@@ -45,3 +56,8 @@ export default function Routess() {
     />
   );
 }
+const mapStateToProps = (state) => ({ user: state.auth.user });
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Routess);
