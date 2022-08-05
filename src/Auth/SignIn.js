@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Form, Input, Button, Checkbox, Card, Spin } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { StyledWrapper } from "./style";
 import { connect } from "react-redux";
 import { signIn } from "../Redux/Actions/auth";
 
 const SignIn = ({ loading, signIn }) => {
+  const navigate = useNavigate();
   const [details, setDetails] = useState({
     email: "",
     password: "",
@@ -20,6 +21,9 @@ const SignIn = ({ loading, signIn }) => {
     setDetails({ ...details, ...object });
   };
 
+  const handleSignIn = async () => {
+    (await signIn(details)) && navigate("/");
+  };
   return (
     <StyledWrapper>
       <div className="outsideApp">
@@ -34,9 +38,7 @@ const SignIn = ({ loading, signIn }) => {
               name="normal_login"
               className="login-form"
               initialValues={{ remember: true }}
-              onFinish={() => {
-                signIn(details);
-              }}
+              onFinish={handleSignIn}
             >
               <Form.Item
                 name="email"

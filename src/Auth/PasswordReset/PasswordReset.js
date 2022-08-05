@@ -15,14 +15,17 @@ const PasswordReset = ({ resetPassword }) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   useEffect(() => {
+    setLoading(true);
     axios
       .get("/auth/" + location.pathname)
       .then((res) => {
         setEmail(res.data.email);
+        console.log(res.data.email);
       })
       .catch((err) => {
         getError(err);
       });
+    setLoading(false);
   }, []);
 
   const onRegister = async () => {
@@ -59,84 +62,86 @@ const PasswordReset = ({ resetPassword }) => {
                 }}
               />
             </center>
-            <Form
-              initialValues={{ email }}
-              name="reset-password"
-              onFinish={onRegister}
-              labelCol={{ span: 10 }}
-              wrapperCol={{ span: 16 }}
-            >
-              <Form.Item
-                name="email"
-                label="E-mail"
-                rules={[
-                  {
-                    type: "email",
-                    message: "The input is not valid E-mail!",
-                  },
-                  {
-                    required: true,
-                    message: "User Not Found!",
-                  },
-                ]}
+            {email && (
+              <Form
+                initialValues={{ email }}
+                name="reset-password"
+                onFinish={onRegister}
+                labelCol={{ span: 10 }}
+                wrapperCol={{ span: 16 }}
               >
-                <Input name="email" disabled />
-              </Form.Item>
-              <Form.Item
-                name="password"
-                label="Password"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your password!",
-                  },
-                ]}
-                hasFeedback
-              >
-                <Input.Password
-                  name="password"
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                  }}
-                />
-              </Form.Item>
-              <Form.Item
-                name="confirm"
-                label="Confirm Password"
-                dependencies={["password"]}
-                hasFeedback
-                rules={[
-                  {
-                    required: true,
-                    message: "Please confirm your password!",
-                  },
-                  ({ getFieldValue }) => ({
-                    validator(_, value) {
-                      if (!value || getFieldValue("password") === value) {
-                        return Promise.resolve();
-                      }
-                      return Promise.reject(
-                        new Error("Passwords do not match!")
-                      );
+                <Form.Item
+                  name="email"
+                  label="E-mail"
+                  rules={[
+                    {
+                      type: "email",
+                      message: "The input is not valid E-mail!",
                     },
-                  }),
-                ]}
-              >
-                <Input.Password />
-              </Form.Item>
-
-              <Form.Item {...tailFormItemLayout}>
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  className="login-form-button"
-                  style={{ marginRight: "20px" }}
+                    {
+                      required: true,
+                      message: "User Not Found!",
+                    },
+                  ]}
                 >
-                  Reset Password
-                </Button>
-                Or <Link to="/login">Login now!</Link>
-              </Form.Item>
-            </Form>
+                  <Input name="email" disabled />
+                </Form.Item>
+                <Form.Item
+                  name="password"
+                  label="Password"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input your password!",
+                    },
+                  ]}
+                  hasFeedback
+                >
+                  <Input.Password
+                    name="password"
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
+                  />
+                </Form.Item>
+                <Form.Item
+                  name="confirm"
+                  label="Confirm Password"
+                  dependencies={["password"]}
+                  hasFeedback
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please confirm your password!",
+                    },
+                    ({ getFieldValue }) => ({
+                      validator(_, value) {
+                        if (!value || getFieldValue("password") === value) {
+                          return Promise.resolve();
+                        }
+                        return Promise.reject(
+                          new Error("Passwords do not match!")
+                        );
+                      },
+                    }),
+                  ]}
+                >
+                  <Input.Password />
+                </Form.Item>
+
+                <Form.Item {...tailFormItemLayout}>
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    className="login-form-button"
+                    style={{ marginRight: "20px" }}
+                  >
+                    Reset Password
+                  </Button>
+                  Or <Link to="/login">Login now!</Link>
+                </Form.Item>
+              </Form>
+            )}
           </Card>
         </Spin>
       </div>

@@ -15,10 +15,11 @@ export const signIn = (payload) => {
       const { data } = await axios.post(`/auth/login`, payload);
       message.success("Logged In Successfully");
       dispatch({ type: SIGNIN_SUCCESS, payload: data });
-      return data;
+      return true;
     } catch (err) {
       getError(err);
       dispatch({ type: SIGNIN_FAILURE });
+      return false
     }
   };
 };
