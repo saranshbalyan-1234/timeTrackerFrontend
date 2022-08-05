@@ -32,9 +32,9 @@ function Routess({ user }) {
       }
 
       let errors = err.response.data.errors;
-      errors.forEach((error) => {
-        message.error(error);
-      });
+      // errors.forEach((error) => {
+      //   message.error(error);
+      // });
 
       console.log("errorResponse", errors);
       return err.response;

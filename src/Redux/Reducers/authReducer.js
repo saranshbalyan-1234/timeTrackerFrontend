@@ -21,7 +21,7 @@ const authReducer = (state = initState, { type, payload }) => {
     case SIGNIN_SUCCESS:
       return {
         ...state,
-        user: payload.data,
+        user: payload,
         loading: false,
       };
     case SIGNIN_FAILURE:
