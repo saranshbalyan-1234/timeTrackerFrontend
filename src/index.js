@@ -10,8 +10,10 @@ import { Provider } from "react-redux";
 import { store, persister } from "./Redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 import SignIn from "./Auth/SignIn";
-import PasswordReset from "./Auth/PasswordReset";
+import SendResetMail from "./Auth/PasswordReset/SendResetMail";
 import Agreement from "./Views/Agreement";
+import VerifyEmail from "./Auth/VerifyEmail";
+import PasswordReset from "./Auth/PasswordReset/PasswordReset";
 axios.defaults.baseURL = api_base_url;
 
 render(
@@ -21,7 +23,17 @@ render(
         <Routes>
           <Route exact path="signin" element={<SignIn />} />
           <Route exact path="register" element={<Register />} />
-          <Route exact path="password-reset" element={<PasswordReset />} />
+          <Route exact path="verify-email/:token" element={<VerifyEmail />} />
+          <Route
+            exact
+            path="reset-password/send-mail"
+            element={<SendResetMail />}
+          />
+          <Route
+            exact
+            path="reset-password/:token"
+            element={<PasswordReset />}
+          />
           <Route exact path="user-agreement" element={<Agreement />} />
           <Route path="/*" element={<Routess />} />
         </Routes>

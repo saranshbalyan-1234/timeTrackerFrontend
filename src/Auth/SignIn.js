@@ -75,7 +75,10 @@ const SignIn = ({ loading, signIn }) => {
                   <Checkbox>Remember me</Checkbox>
                 </Form.Item>
 
-                <Link className="login-form-forgot" to="/password-reset">
+                <Link
+                  className="login-form-forgot"
+                  to="/reset-password/send-mail"
+                >
                   Forgot password!
                 </Link>
               </Form.Item>

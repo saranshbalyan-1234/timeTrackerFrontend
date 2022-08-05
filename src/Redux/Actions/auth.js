@@ -38,7 +38,7 @@ export const register = (payload) => {
   };
 };
 
-export const resetPassword = (payload) => {
+export const sendResetPasswordMail = (payload) => {
   return async (dispatch) => {
     try {
       await axios.post(`/auth/reset-password/send-mail`, payload);
@@ -46,6 +46,21 @@ export const resetPassword = (payload) => {
       return true;
     } catch (err) {
       console.log("error", err);
+      getError(err);
+      return false;
+    }
+  };
+};
+
+export const resetPassword = (token, password) => {
+  return async (dispatch) => {
+    try {
+      await axios.post(`/auth/reset-password/${token}`, {
+        password,
+      });
+      message.success("Password Reset Successfully");
+      return true;
+    } catch (err) {
       getError(err);
       return false;
     }

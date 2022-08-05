@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { Form, Input, Button, Card, Spin } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import { StyledWrapper } from "./style";
+import { StyledWrapper } from "../style";
 import { connect } from "react-redux";
-import { resetPassword } from "../Redux/Actions/auth";
-const PasswordReset = ({ resetPassword }) => {
+import { sendResetPasswordMail } from "../../Redux/Actions/auth";
+
+const SendResetMail = ({ sendResetPasswordMail }) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
@@ -13,7 +14,7 @@ const PasswordReset = ({ resetPassword }) => {
   const handleReset = async () => {
     setLoading(true);
 
-    await resetPassword({ email: email });
+    await sendResetPasswordMail({ email: email });
     setLoading(false);
   };
   return (
@@ -78,6 +79,6 @@ const PasswordReset = ({ resetPassword }) => {
   );
 };
 
-const mapDispatchToProps = { resetPassword };
+const mapDispatchToProps = { sendResetPasswordMail };
 
-export default connect(null, mapDispatchToProps)(PasswordReset);
+export default connect(null, mapDispatchToProps)(SendResetMail);
