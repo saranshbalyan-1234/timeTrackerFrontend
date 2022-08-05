@@ -22,8 +22,8 @@ export default {
     });
 
     axios.interceptors.response.use(
-      (response) => {
-        return response;
+      (res) => {
+        return res;
       },
       (err) => {
         let status = err.response.status;
@@ -35,7 +35,7 @@ export default {
         getError(err);
 
         console.log("errorResponse", errors);
-        return err.response;
+        return Promise.reject(err.response.data);
       }
     );
   },
