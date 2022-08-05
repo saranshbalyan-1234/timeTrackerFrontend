@@ -60,7 +60,7 @@ const PasswordReset = ({ resetPassword }) => {
               />
             </center>
             <Form
-              initialValues={{ email: "saransh@gmai.cm" }}
+              initialValues={{ email }}
               name="reset-password"
               onFinish={onRegister}
               labelCol={{ span: 10 }}
