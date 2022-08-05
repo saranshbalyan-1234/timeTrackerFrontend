@@ -5,7 +5,6 @@ import InfoTable from "./Table";
 import { HomeOutlined } from "@ant-design/icons";
 import { Link, useLocation } from "react-router-dom";
 import {
-  Layout,
   Breadcrumb,
   PageHeader,
   Button,
@@ -17,7 +16,6 @@ import {
   DatePicker,
 } from "antd";
 const { RangePicker } = DatePicker;
-const { Content } = Layout;
 export default function Home() {
   const [tableData, setTableData] = useState([]);
   const [donutData, setDonutData] = useState([]);
@@ -25,7 +23,7 @@ export default function Home() {
   const location = useLocation();
 
   const breadcrumbNameMap = {
-    "/profile": "Profile",
+    "/setting": "Settings",
   };
 
   const pathSnippets = location.pathname.split("/").filter((i) => i);

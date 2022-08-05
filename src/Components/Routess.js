@@ -13,6 +13,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { logout } from "../Redux/Actions/auth";
 import NotFound from "./Errors/NotFound";
+import Setting from "./Settings";
 function Routess({ user }) {
   const navigate = useNavigate();
 
@@ -47,6 +48,7 @@ function Routess({ user }) {
     <Dashboard>
       <Routes>
         <Route exact path="/" element={<Home />}></Route>
+        <Route exact path="/settings" element={<Setting />}></Route>
         <Route exact path="*" element={<NotFound />} />
       </Routes>
     </Dashboard>

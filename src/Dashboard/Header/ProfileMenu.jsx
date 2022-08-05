@@ -3,16 +3,17 @@ import { connect } from "react-redux";
 import { UserOutlined, LogoutOutlined, EditOutlined } from "@ant-design/icons";
 import { Avatar, Dropdown, Menu } from "antd";
 import { logout } from "../../Redux/Actions/auth";
+import { Link } from "react-router-dom";
 const ProfileMenu = ({ logout }) => {
   const menu = (
     <Menu
       items={[
         {
           label: (
-            <>
+            <Link to="/settings">
               <EditOutlined style={{ marginRight: "5px" }} />
-              Edit Profile
-            </>
+              Settings
+            </Link>
           ),
           key: "0",
           // onClick: logout,
