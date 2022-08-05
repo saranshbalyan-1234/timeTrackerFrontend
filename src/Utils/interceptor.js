@@ -31,10 +31,16 @@ export default {
           store.dispatch(logout());
         }
 
-        let errors = err.response.data.errors;
+        // let errors = err.response.data.errors;
+        let errorFormat = {
+          url: err.response.config.url,
+          method: err.response.config.method,
+          status: err.response.status,
+          data: err.response.data.errors,
+        };
         getError(err);
 
-        console.log("errorResponse", errors);
+        console.error("errorResponse", errorFormat);
         return Promise.reject(err.response.data);
       }
     );
