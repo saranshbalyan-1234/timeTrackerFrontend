@@ -26,7 +26,7 @@ const PasswordReset = ({ resetPassword }) => {
         getError(err);
       });
     setLoading(false);
-  }, []);
+  }, [location.pathname]);
 
   const onRegister = async () => {
     setLoading(true);
