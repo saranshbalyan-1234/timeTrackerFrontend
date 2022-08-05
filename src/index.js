@@ -4,8 +4,6 @@ import "antd/dist/antd.min.css";
 import "./index.css";
 import Register from "./Auth/Register";
 import Routess from "./Components/Routess";
-import axios from "axios";
-import { api_base_url } from "./Utils/constants";
 import { Provider } from "react-redux";
 import { store, persister } from "./Redux/store";
 import { PersistGate } from "redux-persist/integration/react";
@@ -14,7 +12,9 @@ import SendResetMail from "./Auth/PasswordReset/SendResetMail";
 import Agreement from "./Views/Agreement";
 import VerifyEmail from "./Auth/VerifyEmail";
 import PasswordReset from "./Auth/PasswordReset/PasswordReset";
-axios.defaults.baseURL = api_base_url;
+import interceptor from "../src/Utils/interceptor";
+
+interceptor.setup();
 
 render(
   <BrowserRouter>

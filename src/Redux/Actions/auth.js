@@ -5,21 +5,20 @@ import {
   SIGNIN_FAILURE,
   LOGOUT,
 } from "./action-types";
-import { getError } from "../../Utils/error";
+
 import { message } from "antd";
 
 export const signIn = (payload) => {
   return async (dispatch) => {
     try {
       dispatch({ type: SIGNIN_REQUEST });
-      const { data } = await axios.post(`/auth/login`, payload);
+      const { data } = await axios.post(`/auth/signin`, payload);
       message.success("Logged In Successfully");
       dispatch({ type: SIGNIN_SUCCESS, payload: data });
       return true;
     } catch (err) {
-      getError(err);
       dispatch({ type: SIGNIN_FAILURE });
-      return false
+      return false;
     }
   };
 };
@@ -33,7 +32,6 @@ export const register = (payload) => {
       );
       return true;
     } catch (err) {
-      getError(err);
       return false;
     }
   };
@@ -46,8 +44,6 @@ export const sendResetPasswordMail = (payload) => {
       message.info("Please check email to reset your password.");
       return true;
     } catch (err) {
-      console.log("error", err);
-      getError(err);
       return false;
     }
   };
@@ -62,7 +58,6 @@ export const resetPassword = (token, password) => {
       message.success("Password Reset Successfully");
       return true;
     } catch (err) {
-      getError(err);
       return false;
     }
   };
