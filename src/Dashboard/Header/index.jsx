@@ -1,10 +1,7 @@
 import React from "react";
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
-import { Layout, Avatar } from "antd";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import { Layout } from "antd";
+import ProfileMenu from "./ProfileMenu";
 const { Header } = Layout;
 
 export default function Headers({ setCollapsed, collapsed }) {
@@ -18,7 +15,7 @@ export default function Headers({ setCollapsed, collapsed }) {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          paddingTop: "10px",
+          paddingTop: "15px",
         }}
       >
         {React.createElement(
@@ -28,15 +25,7 @@ export default function Headers({ setCollapsed, collapsed }) {
             onClick: () => setCollapsed(!collapsed),
           }
         )}
-        <Avatar
-          style={{
-            marginRight: "15px",
-            backgroundColor: "white",
-            color: "#001529",
-          }}
-          size={{ xs: 12, sm: 16, md: 20, lg: 32, xl: 40, xxl: 50 }}
-          icon={<UserOutlined />}
-        />
+        <ProfileMenu />
       </div>
     </Header>
   );

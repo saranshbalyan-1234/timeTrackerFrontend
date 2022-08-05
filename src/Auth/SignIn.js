@@ -1,17 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Input, Button, Checkbox, Card, Spin } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
 import { StyledWrapper } from "./style";
 import { connect } from "react-redux";
-import { signIn } from "../Redux/Actions/auth";
+import { signIn, logout } from "../Redux/Actions/auth";
 
-const SignIn = ({ loading, signIn }) => {
+const SignIn = ({ loading, signIn, logout }) => {
   const navigate = useNavigate();
   const [details, setDetails] = useState({
     email: "",
     password: "",
   });
+
+  useEffect(() => {
+    // logout();
+  }, []);
 
   const handleDetails = (e) => {
     let name = e.target.name;
@@ -105,6 +109,6 @@ const SignIn = ({ loading, signIn }) => {
 };
 const mapStateToProps = (state) => ({ loading: state.auth.loading });
 
-const mapDispatchToProps = { signIn };
+const mapDispatchToProps = { signIn, logout };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
