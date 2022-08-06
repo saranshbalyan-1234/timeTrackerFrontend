@@ -1,6 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { UserOutlined, LogoutOutlined, EditOutlined } from "@ant-design/icons";
+import {
+  UserOutlined,
+  LogoutOutlined,
+  EditOutlined,
+  DownloadOutlined,
+} from "@ant-design/icons";
 import { Avatar, Dropdown, Menu } from "antd";
 import { logout } from "../../Redux/Actions/auth";
 import { Link } from "react-router-dom";
@@ -10,12 +15,21 @@ const ProfileMenu = ({ logout }) => {
       items={[
         {
           label: (
+            <>
+              <DownloadOutlined style={{ marginRight: "5px" }} /> Download App
+            </>
+          ),
+          key: "1",
+          // onClick: logout,
+        },
+        {
+          label: (
             <Link to="/settings">
               <EditOutlined style={{ marginRight: "5px" }} />
               Settings
             </Link>
           ),
-          key: "0",
+          key: "2",
           // onClick: logout,
         },
         {
@@ -24,7 +38,7 @@ const ProfileMenu = ({ logout }) => {
               <LogoutOutlined style={{ marginRight: "5px" }} /> Logout
             </>
           ),
-          key: "1",
+          key: "3",
           onClick: logout,
         },
       ]}

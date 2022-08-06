@@ -48,11 +48,17 @@ export default function Home() {
   ].concat(extraBreadcrumbItems);
 
   const getData = async () => {
-    // let newDate = new Date();
-    // let date = `${newDate.getFullYear()}-${
-    //   newDate.getMonth() + 1
-    // }-${newDate.getDate()}`;
-    await axios.post("/tracking/get", { date: "2022-8-2" }).then((res) => {
+    const newDate = new Date();
+    let currentYear = newDate.getFullYear();
+    let currentMonth =
+      newDate.getMonth() + 1 < 10
+        ? `0${newDate.getMonth() + 1}`
+        : `${newDate.getMonth() + 1}`;
+    let currentDay =
+      newDate.getDate() < 10 ? `0${newDate.getDate()}` : newDate.getDate();
+    let date = `${currentYear}-${currentMonth}-${currentDay}`;
+
+    await axios.post("/tracking/get", { date }).then((res) => {
       console.log(res.data);
       setDonutData(res.data);
       setTableData(
